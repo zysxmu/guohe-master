@@ -1,0 +1,18 @@
+{
+	"index.html": {
+		"resources": [
+			"view/guo_home.html"
+		],
+		"refer": [
+			"view/guo_home.html",
+			"view/detail1.html",
+			"view/detail2.html"
+		]
+	},
+	"view/guo_home.html": {
+		"refer": [
+			"view/detail1.html",
+			"view/detail2.html"
+		]
+	}
+}

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>果核</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no"/>
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/icons-extra.css">
+		<!--App自定义css-->
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+		<style>
+			html,
+			body{
+				background-color:#efeff4;
+			}
+			.mui-bar.mui-bar-nav{
+				background: #FBE04F;
+			}
+		</style>
+		<meta charset="UTF-8">
+		<title>果核</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar.mui-bar-nav{
+				background: #FBE04F;
+			}
+			.card{
+				width: 313px;
+				height: 113px;
+				background: #FBE04F;
+				padding-top: 50px;
+				text-align: center;
+				margin: 0 auto;
+				margin-top: 30px;
+				border-radius: 8%;
+			}
+			
+		
+		</style>
+		</style>
+	</head>
+	
+	<body>
+		<!--顶部标题栏-->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-arrowleft mui-pull-left" href="../index.html"></a>
+			<a class="mui-icon mui-icon-more mui-pull-right adda"></a>
+			<h1 id="title" class="mui-title">果核</h1>
+		</header>
+		<!--底部导航-->
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active"  href="view/guo_home.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">果核</span>
+			</a>
+			<a class="mui-tab-item" href="view/guo_user.html">
+				<span class="mui-icon mui-icon-star"></span>
+				<span class="mui-tab-label">我</span>
+			</a>
+		</nav>
+		
+		<div class="mui-content">
+			<div id="card">
+				<a href="./view/detail1.html">
+					<div class="card">
+						爱你就像爱生命
+					</div>
+				</a>
+				<a href="./view/detail2.html">
+					<div class="card">
+						最熟悉的陌生人
+					</div>
+				</a>
+				<a href="./view/detail1.html">
+					<div class="card">
+						别点我
+					</div>
+				</a>
+				
+			</div>
+			
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.js"></script>
+		<script src="../lib/vue.js"></script>
+		<script src="../lib/vue-router.js"></script>
+		<script src="../js/app.js"></script>
+		<script type="text/javascript">
+			mui.init({
+			
+			})
+	
+			mui.plusReady(function(){
+				
+				//card点击事件，打开新页面
+				mui('#card').on('tap','a',function(){
+					var href = this.getAttribute('href');
+					
+					//不是plus环境，直接href跳转
+					if(!mui.os.plus){
+						location.href = href;
+						return;
+					}
+					mui.openWindow(href);
+				})
+
+			
+		})
+		</script>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			
+			//当前激活的选项页面
+			var activeTab = subpages[0];
+			var title  = document.getElementById("title");
+			//底部导航点击事件
+			mui('.mui-bar-tab').on('tap','a', function(e){
+				var targetTab = this.getAttribute('href');
+				if(targetTab == activeTab){
+					return;
+				}
+				//更新标题
+				title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+				//显示对应内容
+				//若为ios平台或非首次显示，则直接显示
+				if(mui.os.ios || aniShow[targetTab]){
+					plus.webview.show(targetTab);
+				}else{
+					//否则，使用fade-in动画，并保存变量
+					var temp = {};
+					temp[targetTab] = "true";
+					mui.extend(aniShow,temp);
+					plus.webview.show(targetTab,"fade-in",300);
+				}
+				
+				//隐藏当前
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			
+		</script>
+		
+	</body>
+</html>

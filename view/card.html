@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/app.css"/>-->
+		<style type="text/css">
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar.mui-bar-nav{
+				background: #FBE04F;
+			}
+			.card{
+				
+				width: 313px;
+				height: 350px;
+				background: #FBE04F;
+				padding-top: 150px;
+				padding-left: 30px;
+				padding-right: 30px;
+				font-size: medium;
+				text-align: center;
+				vertical-align: middle;
+				margin: 0 auto;
+				margin-top: 40px;
+				border-radius: 5%;
+			}
+			.bgsound{
+				width: 100px;
+				height: 100px;
+				background: #FBE04F;
+				padding-top: 30px;
+				font-size: medium;
+				text-align: center;
+				vertical-align: middle;
+				margin: 0 auto;
+				margin-top: 40px;
+				border-radius: 50%;
+			}
+			.bgsoundButton{
+				width: 60px;
+				height: 60px;
+				background: #FFFFFF;
+				padding-top: 30px;
+				font-size: medium;
+				text-align:center;
+				vertical-align: middle;
+				margin: 0 auto;
+				margin-top: 10px;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--顶部标题栏-->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-arrowleft mui-pull-left menua" href="detail1.html"></a>
+			<a class="mui-icon mui-icon-more mui-pull-right adda"></a>
+			<h1 id="title" class="mui-title">果核</h1>
+		</header>
+		
+		<!--内容-->
+		<div class="mui-content">
+			<div id="backgroundSound" class="bgsound">
+				<audio src="../images/Wanna_One_Energetic.mp3" controls="controls" preload id="music" hidden></audio>
+				<button v-on:click="playPause()" class="bgsoundButton">{{playFlag?'STOP':'PLAY'}}</button>
+			</div>
+			<div id="card">
+				<div id="slider" class="mui-slider" >
+					<div class="mui-slider-group">
+						<div class="mui-slider-item" v-for="(item,index,text) of questionList">
+							<!--
+                            	作者：offline
+                            	时间：2018-05-08
+                            	描述：
+                            	"question in questionList">
+                            -->
+							<div class="card">
+								<div>{{index + 1}}.
+								{{item.question}}</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	
+		<script src="../js/mui.min.js"></script>
+		<script src="../lib/vue.js"></script>
+		<script src="../lib/vue-router.js"></script>
+		<script>Vue.config.productionTip=false</script>
+		<script src="../js/component.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/data.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+			});
+			mui.plusReady(function(){
+				mui('#mui-bar').on('tap','a',function(){
+					var href = this.getAttribute('href');
+					
+					//不是plus环境，直接href跳转
+					if(!mui.os.plus){
+						location.href = href;
+						return;
+					}
+					mui.openWindow(href);
+				})
+				
+			})
+			
+		</script>
+	</body>
+
+</html>
